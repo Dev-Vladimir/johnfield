@@ -690,8 +690,14 @@ body.dark .contact-screen{
 
 @media screen and (max-width: 992px){
 	h2{
-		font-size: 32px;
+		font-size: 48px;
 		letter-spacing: 5px;
+		max-width: 100%;
+		text-align: center;
+	}
+	h3{
+		font-size: 32px;
+		margin-bottom: 0;
 	}
 	:root{
 		--padding-from-edges: 20px;
@@ -732,7 +738,17 @@ body.dark .contact-screen{
 		display: none;
 	}
 	.about{
-		display: none;
+		flex-wrap: wrap;
+	}
+	.about__competition, .about__news{
+		flex-basis: 100%
+	}
+	.next-competition{
+		margin-top: 40px;
+	}
+	.about__news{
+		max-width: 100%;
+		margin-top: 20px;
 	}
 	.partners{
 		display: none;
