@@ -751,6 +751,11 @@ body.dark .contact-screen{
 		margin-top: 20px;
 	}
 	.partners{
-		display: none;
+		height: auto;
+		min-height: 100vh;
+	}
+	.partners__item{
+		width: 100%;
+		height: 132px;
 	}
 }
