@@ -704,7 +704,7 @@ body.dark .contact-screen{
 		background-position: 50% 50%
 	}
 	.main-screen{
-		overflow: hidden;
+		/*overflow: hidden;*/
 		flex-wrap: wrap;
 		padding-right: var(--padding-from-edges);
 	}
