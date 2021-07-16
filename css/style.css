@@ -481,7 +481,7 @@ body.dark .discover-screen{
 
 /*About*/
 .about{
-	padding: 40px var(--padding-from-edges);
+	padding: 80px var(--padding-from-edges);
 	background: #fff;
 	justify-content: space-between;
 }
@@ -644,8 +644,9 @@ body.dark .partners-screen{
 	background-attachment: fixed;
 }
 .partners{
-	padding: 40px var(--padding-from-edges);
+	padding: 80px var(--padding-from-edges);
 	height: 100vh;
+	min-height: 100vh;
 }
 body.dark .partners{
 	background: #006837;
@@ -686,6 +687,150 @@ body.dark .partners{
 body.dark .contact-screen{
 	background-image: url('../img/contact-bg_dark.jpg');
 	background-attachment: fixed;
+
+}
+.contact{
+	background-image: url('../img/contact-bg_light.jpg');
+	background-attachment: fixed;
+}
+body.dark .contact{
+	background-image: url('../img/contact-bg_dark.jpg');
+	background-attachment: fixed;
+}
+.contact__content{
+	width: 100%; height: 100%;
+	background: rgba(255,255,255,.7);
+	padding: 80px var(--padding-from-edges);
+	color: #002413;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+body.dark .contact__content{
+	background: rgba(0,0,0,.5);
+	color: #dbdede;
+}
+.contact__info, .contact__form{
+	flex-basis: 48%;
+	max-width: 48%;
+}
+.contact__text{
+	width: 50%;
+	min-width: 297px;
+}
+.contact__email{
+	margin-top: 20px;
+	font-weight: 600;
+	display: inline-block;
+	color: #002413;
+	transition: var(--my-transition);
+}
+body.dark .contact__email{
+	color: #dbdede;
+}
+.contact__email:hover{
+	color: #006837;
+	text-decoration: underline;
+}
+body.dark .contact__email:hover{
+	color: #fff;
+}
+.contact__map{
+	width: 100%;
+	height: auto;
+	margin-top: 120px;
+}
+.contact__map>iframe{
+	width: 100%;
+	/*max-height: 296px;*/
+}
+.contact__form{
+	/*border:  2px solid #006837;*/
+	background: rgba(255,255,255,.7);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 40px 36px;
+}
+body.dark .contact__form{
+	border:  2px solid #dbdede;
+	background: transparent;
+}
+.contact__form>form{
+	display: flex;
+	flex-wrap: wrap;
+	flex: 1;
+	justify-content: center;
+	height: 100%;
+}
+.contact__form>form>.question{
+	position: relative;
+	min-height: 40px;
+	display: flex;
+	flex-basis: 100%;
+	align-self: center;
+	justify-content: center;
+	/*margin-top: 60px;*/
+}
+.contact__form>form>.question>input, .contact__form>form>.question>textarea{
+	display: block;
+	width: 100%;
+	color: #002413;
+	outline: none;
+	border:  none;
+	background: transparent;
+	border-bottom: 1px solid #002413;
+	transition: var(--my-transition);
+	padding: 2px;
+}
+body.dark .contact__form>form>.question>input,
+body.dark .contact__form>form>.question>textarea{
+	border-bottom: 1px solid #dbdede;
+	color: #dbdede;
+}
+.contact__form>form>.question>textarea{
+	border: 1px solid #002413;
+}
+body.dark .contact__form>form>.question>textarea{
+	border:  1px solid #dbdede;
+}
+.contact__form>form>.question>input:hover, .contact__form>form>.question>textarea:hover{
+	border-bottom: 1px solid #006837;
+	/*box-shadow: 0 0 10px rgba(0,0,0,.3);*/
+	/*border:  none;*/
+}
+body.dark .contact__form>form>.question>input:hover,
+body.dark .contact__form>form>.question>textarea:hover{
+	border-bottom: 1px solid #fff;
+}
+.contact__form>form textarea{
+	height: 240px;
+}
+.contact__form>form>.question>.label{
+	position: absolute;
+	font-size: 24px;
+	top: 2px; left: 10px;
+	color: #002413;
+	transition: var(--my-transition);
+}
+body.dark .contact__form>form>.question>.label{
+	color: #dbdede;
+}
+.contact__form>form input:focus~.label, .contact__form>form textarea:focus~.label{
+	font-size: 16px;
+	top: -25px; left: 0;
+}
+.contact__form>form>.button{
+	margin-top: 20px;
+	max-height: 36px;
+	padding: 6px 40px;
+}
+body.dark .contact__form>form>.button{
+	background: transparent;
+}
+body.dark .contact__form>form>.button:hover{
+	background: #fff;
+	color: #002413;
 }
 
 @media screen and (max-width: 992px){
@@ -757,5 +902,24 @@ body.dark .contact-screen{
 	.partners__item{
 		width: 100%;
 		height: 132px;
+	}
+	.contact__info, .contact__form{
+		flex-basis: 100%;
+		width: 100%;
+		max-width: 100%;
+	}
+	.contact__text{
+		min-width: auto;
+		width: 100%;
+		max-width: 100%;
+	}
+	.contact__map{
+		margin-top: 40px
+	}
+	.contact__form{
+		margin-top: 40px
+	}
+	.contact__form>form>.question{
+		margin-top: 10px
 	}
 }
