@@ -928,7 +928,7 @@ body.dark .contact__form>form>.button:hover{
 	.burger.left{
 		transform: none
 	}
-	.discover-screen, .partners-screen, .contact-screen{
+	.discover-screen, .partners-screen, .contact-screen, .contact{
 		background-size: cover;
 		background-position: 50% 50%
 	}
@@ -960,14 +960,14 @@ body.dark .contact__form>form>.button:hover{
 	.main-screen__menu__content>.right-menu{
 		flex-basis: 100%;
 	}
-	.main-screen__menu{
-		/*display: none;*/
-	}
 	.main-screen__menu .nav li{
 		line-height: 40px
 	}
 	.main-screen__menu .nav a{
 		font-size: 24px
+	}
+	.main-screen__menu .nav a:hover:before{
+		display: none
 	}
 	.main-screen__menu>.search{
 		width: 75%;
@@ -1042,7 +1042,7 @@ body.dark .contact__form>form>.button:hover{
 		margin-top: 40px
 	}
 	.contact__form>form>.question{
-		margin-top: 10px
+		margin-top: 40px
 	}
 	.subscribe__form{
 		justify-content: center;
