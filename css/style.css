@@ -787,6 +787,7 @@ body.dark .contact__form>form>.question>input,
 body.dark .contact__form>form>.question>textarea{
 	border-bottom: 1px solid #dbdede;
 	color: #dbdede;
+	background: rgba(255,255,255,.8);
 }
 .contact__form>form>.question>textarea{
 	border: 1px solid #002413;
@@ -814,11 +815,16 @@ body.dark .contact__form>form>.question>textarea:hover{
 	transition: var(--my-transition);
 }
 body.dark .contact__form>form>.question>.label{
-	color: #dbdede;
+	/*color: #dbdede;*/
+	color: #002413;
 }
 .contact__form>form input:focus~.label, .contact__form>form textarea:focus~.label{
 	font-size: 16px;
 	top: -25px; left: 0;
+}
+body.dark .contact__form>form input:focus~.label,
+body.dark .contact__form>form textarea:focus~.label{
+	color: #fff;
 }
 .contact__form>form>.button{
 	margin-top: 20px;
@@ -831,6 +837,78 @@ body.dark .contact__form>form>.button{
 body.dark .contact__form>form>.button:hover{
 	background: #fff;
 	color: #002413;
+}
+.footer{
+	justify-content: center;
+	flex-wrap: wrap;
+	padding: 40px var(--padding-from-edges);
+	background: #002413;
+	color: #dbdede;
+}
+.footer__cocial, .footer__subscribe, .footer__copyright{
+	flex-basis: 100%;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+.cocial__links{
+	flex-wrap: wrap;
+	justify-content: center;
+}
+.cocial__item{
+	padding: 0 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 20px;
+}
+.cocial__item>a{
+	color: #dbdede;
+	transition: var(--my-transition);
+}
+.cocial__item>a:hover{
+	color: #fff;
+}
+.cocial__item>a>i{
+	width: 30px; height: 30px;
+	border-radius: 50%;
+	border: 1px solid #dbdede;
+	margin-right: 10px;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	transition: var(--my-transition);
+}
+.cocial__item>a:hover>i{
+	box-shadow: 0 0 5px #fff;
+}
+.cocial__title, .subscribe__title{
+	font-size: 32px;
+	width: 100%;
+	text-align: center;
+}
+.footer__subscribe, .footer__copyright{
+	margin-top: 40px;
+}
+.subscribe__form{
+	margin-top: 20px;
+}
+.subscribe__form input{
+	padding: 8px 40px;
+}
+.subscribe__form button.button{
+	border: 2px solid #fff;
+	color: #dbdede;
+	background: transparent;
+	margin-left: 10px;
+}
+.subscribe__form button.button:hover{
+	color: #002413;
+	background: #fff;
+	box-shadow: 0 0 5px #fff
+}
+.footer__copyright>span{
+	margin-right: 10px;
 }
 
 @media screen and (max-width: 992px){
@@ -873,8 +951,52 @@ body.dark .contact__form>form>.button:hover{
 		flex-basis: 100%;
 		height: 60px;
 	}
+	.main-screen__menu__content{
+		width: 100%;
+		flex-wrap: wrap;
+		margin-top: 50px
+	}
+	.main-screen__menu__content>.nav,
+	.main-screen__menu__content>.right-menu{
+		flex-basis: 100%;
+	}
 	.main-screen__menu{
-		display: none;
+		/*display: none;*/
+	}
+	.main-screen__menu .nav li{
+		line-height: 40px
+	}
+	.main-screen__menu .nav a{
+		font-size: 24px
+	}
+	.main-screen__menu>.search{
+		width: 75%;
+		margin-bottom: 0
+	}
+	.main-screen__menu__content>.right-menu{
+		justify-content: flex-start
+	}
+	.main-screen__menu .lang-mng{
+		text-align: left;
+		font-size: 24px;
+		margin-top: 20px;
+	}
+	.main-screen__menu .lang-mng>a{
+		padding-left: 0;
+		padding-right: 10px
+	}
+	.theme-settings{
+		justify-content: flex-start;
+		font-size: 24px;
+		text-align: left
+	}
+	.theme-settings>.theme-settings-title{
+		font-size: 24px;
+		margin-bottom: 0;
+		margin-top: 10px
+	}
+	.theme-settings-switcher{
+		justify-content: flex-start
 	}
 	.arrow-down{
 		display: none;
@@ -920,6 +1042,14 @@ body.dark .contact__form>form>.button:hover{
 		margin-top: 40px
 	}
 	.contact__form>form>.question{
+		margin-top: 10px
+	}
+	.subscribe__form{
+		justify-content: center;
+		text-align: center
+	}
+	.subscribe__form button.button{
+		margin-left: 0;
 		margin-top: 10px
 	}
 }
