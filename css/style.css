@@ -955,6 +955,7 @@ body.dark .contact__form>form>.button:hover{
 		/*overflow: hidden;*/
 		flex-wrap: wrap;
 		padding-right: var(--padding-from-edges);
+		background-size: cover;
 	}
 	.main-screen__title{
 		margin-top: 0;
