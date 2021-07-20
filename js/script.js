@@ -94,7 +94,7 @@ function SliderInit(sliderElem){
 
 	let SlideShow = setInterval(function(){
 		NextSlide(buttons.querySelector('.next'));
-	}, 7000)
+	}, 5000)
 }
 
 function NextSlide(button){
@@ -134,17 +134,18 @@ function SlideToggle(next){
 		if ((next == slides.length - 1 && currentNumSlide == 0) || (next < currentNumSlide && next != 0)){
 			// console.log(currentNumSlide == slides.length - 1, next == 0);
 			//листаем влево
-			nextSlide.classList.add('from-right')
-			currentSlide.after(nextSlide);
-			currentSlide.classList.add('from-left');
-			setTimeout(function(){nextSlide.classList.remove('from-right');}, 0);
-			
-		}else{
-			//листаем впрао
 			nextSlide.classList.add('from-left')
 			currentSlide.before(nextSlide)
 			currentSlide.classList.add('from-right');
 			setTimeout(function(){nextSlide.classList.remove('from-left');}, 0)
+			
+			
+		}else{
+			//листаем впрао
+			nextSlide.classList.add('from-right')
+			currentSlide.after(nextSlide);
+			currentSlide.classList.add('from-left');
+			setTimeout(function(){nextSlide.classList.remove('from-right');}, 0);
 		}
 		let circles = sliderControls.querySelectorAll('.circle');
 		// console.log(circles[currentNumSlide]);
