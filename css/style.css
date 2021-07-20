@@ -79,6 +79,8 @@ body.dark .button:hover{
 .main-screen{
 	justify-content: space-between;
 	background: url('../img/main-screen_bg_light.jpg');
+	background-size: 120%;
+	background-position: top 10% left 10%;
 	height: 100vh;
 	min-height: 500px;
 	padding-left: var(--padding-from-edges);
@@ -526,6 +528,7 @@ body.dark .next-competition{
 .slider-content{
 	width: 100%;
 	position: relative;
+	overflow: hidden;
 }
 .slider-buttons{
 	position: absolute;
@@ -585,18 +588,34 @@ body.dark .next-competition{
 	margin-right: 10px;
 	z-index: 5;
 }
-.slider-controls>.circle:hover{
+.slider-controls>.circle:hover, .slider-controls>.circle.active{
 	background: #fff;
 	box-shadow: 0 0 5px #fff
 }
-.slider-content>.slide{
+.slider-list{
 	width: 100%;
-	color: #002413;
+	height: 575px;
+	position: relative;
 }
 body.dark .slider-content>.slide{
 	color: #dbdede;
 }
-.slider-content>.slide>.slide-img{
+.slider-list>.slide{
+	display: flex;
+	flex-wrap: wrap;
+	position: absolute;
+	width: 100%; height: 530px;
+	top: 0; left: 0;
+	color: #002413;
+	transition: var(--my-transition);
+}
+.slider-list>.slide.from-right{
+	left: 100%;
+}
+.slider-list>.slide.from-left{
+	left: -100%;
+}
+.slider-list>.slide>.slide-img{
 	height: 330px; width: 100%;
 	overflow: hidden;
 	display: flex;
@@ -604,30 +623,30 @@ body.dark .slider-content>.slide{
 	align-items: center;
 	background: #000;
 }
-.slider-content>.slide>.slide-img>img{
+.slider-list>.slide>.slide-img>img{
 	height: 100%;
 	opacity: .5;
 	transition: var(--my-transition)
 }
-.slider-content>.slide:hover>.slide-img>img{
+.slider-list>.slide:hover>.slide-img>img{
 	opacity: 1;
 }
-.slider-content>.slide>.slide-title,
-.slider-content>.slide>.slide-preview{
+.slider-list>.slide>.slide-title,
+.slider-list>.slide>.slide-preview{
 	transition: var(--my-transition);
 	margin-top: 10px;
 }
-.slider-content>.slide>.slide-title{
+.slider-list>.slide>.slide-title{
 	font-family: "Montserrat";
 	font-weight: 600;
 	font-size: 24px;
 }
-.slider-content>.slide:hover>.slide-title,
-.slider-content>.slide:hover>.slide-preview{
+.slider-list>.slide:hover>.slide-title,
+.slider-list>.slide:hover>.slide-preview{
 	color: #006837;
 }
-body.dark .slider-content>.slide:hover>.slide-title,
-body.dark .slider-content>.slide:hover>.slide-preview{
+body.dark .slider-list>.slide:hover>.slide-title,
+body.dark .slider-list>.slide:hover>.slide-preview{
 	color: #fff;
 }
 .partners-screen{
