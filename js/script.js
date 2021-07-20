@@ -65,7 +65,16 @@ function SliderInit(sliderElem){
 		if (i == 0){
 			circle.classList.add('active');
 		}
-		circle.addEventListener('click', function(){SlideToggle(this.dataset.num)});
+		circle.addEventListener('click', function(elem){
+			clearInterval(SlideShow);
+			SlideToggle(this.dataset.num);
+			// console.log(typeof(SlideToggle));
+			if (typeof(SlideShow) != undefined){
+				SlideShow = setInterval(function(){
+					NextSlide(buttons.querySelector('.next'));
+				}, 5000)
+			}
+		});
 		sliderControls.appendChild(circle);
 	}
 	sliderList.appendChild(slides[0]);
@@ -74,11 +83,18 @@ function SliderInit(sliderElem){
 
 	sliderElem.after(slider);
 	
-	buttons.querySelectorAll('div').forEach(elem => (elem.addEventListener('click', function(){NextSlide(elem)})));
+	buttons.querySelectorAll('div').forEach(elem => (elem.addEventListener('click', function(){
+		// if (typeof(SlideShow) != undefined){
+		// 	SlideShow = setInterval(function(){
+		// 		NextSlide(buttons.querySelector('.next'));
+		// 	}, 7000)
+		// }
+		NextSlide(elem);
+	})));
 
-	let SlideToggle = setInterval(function(){
+	let SlideShow = setInterval(function(){
 		NextSlide(buttons.querySelector('.next'));
-	}, 3000)
+	}, 7000)
 }
 
 function NextSlide(button){
@@ -100,7 +116,7 @@ function NextSlide(button){
 			newSlideNum = slides.length - 1;
 		}
 	}
-	// console.log(currentNumSlide, newSlideNum);
+	// console.log(newSlideNum);
 	SlideToggle(newSlideNum);
 }
 
@@ -109,14 +125,14 @@ function SlideToggle(next){
 		currentNumSlide = Number(currentSlide.dataset.num);
 		nextSlide = slides[next];
 
-		console.log(next, currentNumSlide);
+		// console.log(next, currentNumSlide);
 
 	if (next != currentNumSlide){
 		if (nextSlide.classList.contains('from-left')){nextSlide.classList.remove('from-left')}
 		if (nextSlide.classList.contains('from-right')){nextSlide.classList.remove('from-right')}
 			// console.log(next, currentNumSlide);
-		if (next == slides.length - 1 || next < currentNumSlide){
-			// console.log('right');
+		if ((next == slides.length - 1 && currentNumSlide == 0) || (next < currentNumSlide && next != 0)){
+			// console.log(currentNumSlide == slides.length - 1, next == 0);
 			//листаем влево
 			nextSlide.classList.add('from-right')
 			currentSlide.after(nextSlide);
