@@ -74,6 +74,9 @@ body.dark .button:hover{
 	background: #fff;
 	box-shadow: 0 0 5px #fff
 }
+.parralaxed>h2{
+	margin-top: -200px;
+}
 
 
 .main-screen{
@@ -574,14 +577,14 @@ body.dark .next-competition{
 }
 .slider-controls{
 	width: 100%;
-	height: 10px;
+	height: 12px;
 	position: absolute;
 	top: 310px; left: 0;
 	display: flex;
-	padding-left: 10px;
+	padding-left: 7px;
 }
 .slider-controls>.circle{
-	height: 10px; width: 10px;
+	height: 12px; width: 12px;
 	border-radius: 50%;
 	background: rgba(255,255,255,.3);
 	transition: var(--my-transition);
@@ -597,17 +600,19 @@ body.dark .next-competition{
 	height: 575px;
 	position: relative;
 }
-body.dark .slider-content>.slide{
-	color: #dbdede;
-}
 .slider-list>.slide{
 	display: flex;
 	flex-wrap: wrap;
 	position: absolute;
 	width: 100%; height: 530px;
 	top: 0; left: 0;
+	background: #fff;
 	color: #002413;
 	transition: var(--my-transition);
+}
+body.dark .slider-list>.slide{
+	color: #dbdede;
+	background: #006837;
 }
 .slider-list>.slide.from-right{
 	left: 100%;
@@ -914,6 +919,12 @@ body.dark .contact__form>form>.button:hover{
 }
 .subscribe__form input{
 	padding: 8px 40px;
+	outline: none;
+	border:  2px solid #dbdede;
+	transition: var(--my-transition);
+}
+.subscribe__form input:hover, .subscribe__form input:focus{
+	border:  2px solid #fff;
 }
 .subscribe__form button.button{
 	border: 2px solid #fff;

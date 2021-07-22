@@ -1,9 +1,101 @@
+class Slider{
+	constructor(elem){
+		elem.style.display = 'none';
+		this.slides = elem.querySelectorAll('.slide');
+		this.createElements();
+		// console.log(this.slider);
+		elem.after(this.slider);
+	}
+	makeElement(type, classes, attributes){
+		let elem = document.createElement(type);
+		if (classes){;
+			elem.classList.add(...classes);
+		}
+		if (attributes){
+			for (attr in attributes){
+				elem[attr] = attributes[attr];
+			}
+		}
+		return elem;
+	}
+	createElements(){
+		this.slider = this.makeElement('div', ['slider-content']);
+		this.buttons = this.makeElement('div', ['slider-buttons']);
+		this.buttons.innerHTML = '<div class="prev"><span></span><span></span></div><div class="next"><span></span><span></span></div>';
+		
+		this.sliderControls = this.makeElement('div', ['slider-controls']);
+		this.sliderList = this.makeElement('div', ['slider-list', 'd-flex'])
+		this.sliderList.append(this.slides[0]);
+		this.constructControls();
+		this.slider.append(...[this.buttons, this.sliderControls, this.sliderList]);
+		this.slidesToggle = setInterval(() => {this.nextSlide(this.slider.querySelector('.next'))}, 5000);
+		this.buttons.querySelectorAll('div').forEach(elem => (elem.addEventListener('click', () => {
+			this.nextSlide(elem);
+		})));
+	}
+	constructControls(){
+		for (let i = 0; i < this.slides.length; i++){
+			let circle = this.makeElement('div', ['circle']);
+			if (i == 0) {circle.classList.add('active')}
+			this.slides[i].dataset.num = i;
+			circle.dataset.num = i;
+			circle.addEventListener('click', () => {
+				clearInterval(this.slidesToggle);
+				this.slideToggle(circle.dataset.num);
+			})
+			this.sliderControls.append(circle);
+		}
+	}
+	nextSlide(button){
+		// console.log(button);
+		const current = Number(this.slider.querySelector('.slide').dataset.num);
+		let next = 0;
+		// console.log(current);
+		if (button.classList.contains('next')){
+			next = (current == this.slides.length - 1) ? 0 : (current + 1);
+		}else{
+			next = (current == 0) ? (this.slides.length - 1) : (current - 1);
+		}
+		this.slideToggle(next);
+	}
+	slideToggle(next){
+		clearInterval(this.slidesToggle);
+		const currentSlide = this.slider.querySelector('.slide');
+		const current = Number(currentSlide.dataset.num);
+		const nextSlide = this.slides[next];
+		const circles = this.sliderControls.querySelectorAll('.circle');
+		if (next != current){
+			if (nextSlide.classList.contains('from-left')){nextSlide.classList.remove('from-left')}
+			if (nextSlide.classList.contains('from-right')){nextSlide.classList.remove('from-right')}
+			if ((next == this.slides.length - 1 && current == 0) || (next < current && next != 0) || (next == 0 && current == 1)){
+				//листаем слева (назад)
+				nextSlide.classList.add('from-left')
+				currentSlide.before(nextSlide)
+				currentSlide.classList.add('from-right');
+				setTimeout(function(){nextSlide.classList.remove('from-left');}, 0)
+			}else{
+				//листаем справа (вперед)
+				nextSlide.classList.add('from-right')
+				currentSlide.after(nextSlide);
+				currentSlide.classList.add('from-left');
+				setTimeout(function(){nextSlide.classList.remove('from-right');}, 0)
+			}
+			circles[current].classList.remove('active')
+			circles[next].classList.add('active')
+			currentSlide.remove();
+		}
+		this.slidesToggle = setInterval(() => {this.nextSlide(this.slider.querySelector('.next'))}, 5000);
+	}
+}
+
 document.querySelector('.burger').onclick = function(){
 	this.classList.toggle('active');
 	document.querySelector('#menu').classList.toggle('active')
 	document.querySelector('body').classList.toggle('locked')
 }
-document.onload = SliderInit(document.querySelector('.slider'));
+// document.onload = SliderInit(document.querySelector('.slider'));
+document.onload = new Slider(document.querySelector('.slider'));
+
 
 document.querySelector('.theme-settings .field').onclick =function(){
 	this.classList.toggle('switch-dark')
@@ -20,6 +112,32 @@ window.addEventListener('scroll', function(){
 		if (menu.classList.contains('left')){menu.classList.remove('left')}
 	}
 })
+
+
+window.onload = () => {
+    document.addEventListener('scroll', parralax)
+}
+
+function parralax(){
+	let targets = document.querySelectorAll('.parralaxed');
+	let observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+        	if (entry.isIntersecting){
+        		let heading = entry.target.querySelector('h2');
+        		let screenHeight = window.screen.height / 2;
+        		let elemoffset = entry.target.offsetTop;
+        		let documentOffset = pageYOffset;
+        		let coeficent = 0.25;
+        		translate = (screenHeight + documentOffset - elemoffset) * coeficent;
+        		console.log(translate);
+        		heading.style.transform = `translateY(${translate}px)`
+        	}
+        })
+    }, { threshold: 0.5 })
+    targets.forEach(target => {observer.observe(target)})
+}
+
+
 
 let mainScreen = document.querySelector('.main-screen');
 mainScreen.addEventListener('mousemove', ParralaxMouseOver);
@@ -38,125 +156,4 @@ function ParralaxMouseOver(e){
 		coordleft = coordX + 10;
 
 	mainScreen.style.backgroundPosition = `top ${coordtop}% left ${coordleft}%`;
-}
-
-function SliderInit(sliderElem){
-	sliderElem.style.display = 'none';
-	let slider = document.createElement('div');
-		buttons = document.createElement('div');
-		sliderControls = document.createElement('div');
-		slides = sliderElem.querySelectorAll('.slide');
-		sliderList = document.createElement('div');
-
-	slider.classList.add('slider-content');
-	buttons.classList.add('slider-buttons');
-	sliderControls.classList.add('slider-controls');
-	buttons.innerHTML = '<div class="prev"><span></span><span></span></div><div class="next"><span></span><span></span></div>';
-	slider.appendChild(buttons);
-	sliderList.classList.add('slider-list');
-	sliderList.classList.add('d-flex');
-
-	for (i = 0; i < slides.length; i++){
-		// sliderList.appendChild(slides[i]);
-		slides[i].dataset.num = i;
-		let circle = document.createElement('div');
-		circle.classList.add('circle');
-		circle.dataset.num = i;
-		if (i == 0){
-			circle.classList.add('active');
-		}
-		circle.addEventListener('click', function(elem){
-			clearInterval(SlideShow);
-			SlideToggle(this.dataset.num);
-			// console.log(typeof(SlideToggle));
-			if (typeof(SlideShow) != undefined){
-				SlideShow = setInterval(function(){
-					NextSlide(buttons.querySelector('.next'));
-				}, 5000)
-			}
-		});
-		sliderControls.appendChild(circle);
-	}
-	sliderList.appendChild(slides[0]);
-	slider.appendChild(sliderControls);
-	slider.appendChild(sliderList);
-
-	sliderElem.after(slider);
-	
-	buttons.querySelectorAll('div').forEach(elem => (elem.addEventListener('click', function(){
-		// if (typeof(SlideShow) != undefined){
-		// 	SlideShow = setInterval(function(){
-		// 		NextSlide(buttons.querySelector('.next'));
-		// 	}, 7000)
-		// }
-		NextSlide(elem);
-	})));
-
-	let SlideShow = setInterval(function(){
-		NextSlide(buttons.querySelector('.next'));
-	}, 5000)
-}
-
-function NextSlide(button){
-	// console.log(sliderList);
-	let currentSlide = sliderList.querySelector('.slide');
-		currentNumSlide = currentSlide.dataset.num;
-
-	// console.log(currentNumSlide);
-	if (button.classList.contains('next')){
-		if (currentNumSlide < slides.length - 1){
-			newSlideNum = Number(currentNumSlide) + 1	
-		}else{
-			newSlideNum = 0;
-		}
-	}else{
-		if (Number(currentNumSlide) > 0){
-			newSlideNum = Number(currentNumSlide) - 1;
-		}else{
-			newSlideNum = slides.length - 1;
-		}
-	}
-	// console.log(newSlideNum);
-	SlideToggle(newSlideNum);
-}
-
-function SlideToggle(next){
-	let currentSlide = sliderList.querySelector('.slide');
-		currentNumSlide = Number(currentSlide.dataset.num);
-		nextSlide = slides[next];
-
-		// console.log(next, currentNumSlide);
-
-	if (next != currentNumSlide){
-		if (nextSlide.classList.contains('from-left')){nextSlide.classList.remove('from-left')}
-		if (nextSlide.classList.contains('from-right')){nextSlide.classList.remove('from-right')}
-			// console.log(next, currentNumSlide);
-		if ((next == slides.length - 1 && currentNumSlide == 0) || (next < currentNumSlide && next != 0)){
-			// console.log(currentNumSlide == slides.length - 1, next == 0);
-			//листаем влево
-			nextSlide.classList.add('from-left')
-			currentSlide.before(nextSlide)
-			currentSlide.classList.add('from-right');
-			setTimeout(function(){nextSlide.classList.remove('from-left');}, 0)
-			
-			
-		}else{
-			//листаем впрао
-			nextSlide.classList.add('from-right')
-			currentSlide.after(nextSlide);
-			currentSlide.classList.add('from-left');
-			setTimeout(function(){nextSlide.classList.remove('from-right');}, 0);
-		}
-		let circles = sliderControls.querySelectorAll('.circle');
-		// console.log(circles[currentNumSlide]);
-		circles[currentNumSlide].classList.remove('active');
-		circles[next].classList.add('active')
-		// console.log(slides);
-
-		setTimeout(function(){
-			if (currentSlide.classList.contains('from-left')){currentSlide.classList.remove('from-left')}
-			if (currentSlide.classList.contains('from-right')){currentSlide.classList.remove('from-right')}
-				currentSlide.remove();
-		}, 300);
-	}
 }
