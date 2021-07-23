@@ -113,6 +113,12 @@ window.addEventListener('scroll', function(){
 	}
 })
 
+document.querySelector('.arrow-down').addEventListener('click', function(){
+	// console.log(document.querySelector('.discover-screen').offsetTop)
+	document.querySelector('.discover-screen').scrollIntoView({behavior: "smooth"});
+	// document.scrollTop = document.querySelector('.discover-screen').offsetTop;
+})
+
 
 window.onload = () => {
     document.addEventListener('scroll', parralax)
@@ -123,14 +129,17 @@ function parralax(){
 	let observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
         	if (entry.isIntersecting){
-        		let heading = entry.target.querySelector('h2');
-        		let screenHeight = window.screen.height / 2;
-        		let elemoffset = entry.target.offsetTop;
-        		let documentOffset = pageYOffset;
-        		let coeficent = 0.25;
-        		translate = (screenHeight + documentOffset - elemoffset) * coeficent;
-        		console.log(translate);
-        		heading.style.transform = `translateY(${translate}px)`
+        		requestAnimationFrame(function(){
+        			let heading = entry.target.querySelector('h2');
+	        		let screenHeight = window.screen.height / 2;
+	        		let elemoffset = entry.target.offsetTop;
+	        		let documentOffset = pageYOffset;
+	        		let coeficent = 0.1;
+	        		translate = (screenHeight + documentOffset - elemoffset) * coeficent;
+	        		console.log(translate);
+	        		heading.style.transform = `translateY(${translate}px)`;
+        		})
+        		
         	}
         })
     }, { threshold: 0.5 })
