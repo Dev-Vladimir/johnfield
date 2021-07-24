@@ -71,13 +71,13 @@ class Slider{
 				//листаем слева (назад)
 				nextSlide.classList.add('from-left')
 				currentSlide.before(nextSlide)
-				currentSlide.classList.add('from-right');
+				setTimeout(function(){currentSlide.classList.add('from-right')}, 0);
 				setTimeout(function(){nextSlide.classList.remove('from-left');}, 0)
 			}else{
 				//листаем справа (вперед)
 				nextSlide.classList.add('from-right')
 				currentSlide.after(nextSlide);
-				currentSlide.classList.add('from-left');
+				setTimeout(function(){currentSlide.classList.add('from-left')}, 0);
 				setTimeout(function(){nextSlide.classList.remove('from-right');}, 0)
 			}
 			circles[current].classList.remove('active')
@@ -88,10 +88,51 @@ class Slider{
 	}
 }
 
+function makeElement(type, styles){
+	let elem = document.createElement(type);
+	if (styles){
+		for (style in styles){
+			elem.style[style] = styles[style];
+		}
+	}
+	return elem;
+}
 document.querySelector('.burger').onclick = function(){
 	this.classList.toggle('active');
-	document.querySelector('#menu').classList.toggle('active')
-	document.querySelector('body').classList.toggle('locked')
+	setTimeout(function(){
+		document.querySelector('#menu').classList.toggle('active')
+		document.querySelector('body').classList.toggle('locked')
+	}, 200)
+	const div1 = makeElement('div', {
+		'position' : 'fixed',
+		'height' : '50vh',
+		'width' : '100%',
+		'top' : 0,
+		'left' : '-100%',
+		'background': '#fff',
+		'z-index' : 10,
+		'transition' : 'all .3s'
+	});
+	const div2 = makeElement('div', {
+		'position' : 'fixed',
+		'height' : '50vh',
+		'width' : '100%',
+		'top' : '50vh',
+		'left' : '100%',
+		'background': '#fff',
+		'z-index' : 10,
+		'transition' : 'all .3s'
+	})
+	document.body.prepend(...[div1, div2])
+	setTimeout(function(){
+		div1.style.left = 0;
+		div2.style.left = 0
+	}, 0)
+	setTimeout(function(){
+		div1.style.left = '-100%';
+		div2.style.left = '100%'
+	}, 600)
+	
 }
 // document.onload = SliderInit(document.querySelector('.slider'));
 document.onload = new Slider(document.querySelector('.slider'));
