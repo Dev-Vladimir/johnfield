@@ -129,8 +129,8 @@ document.querySelector('.burger').onclick = function(){
 		div2.style.left = 0
 	}, 0)
 	setTimeout(function(){
-		div1.style.left = '-100%';
-		div2.style.left = '100%'
+		div1.style.left = '100%';
+		div2.style.left = '-100%'
 	}, 600)
 	
 }
@@ -175,7 +175,7 @@ function parralax(){
 	        		let screenHeight = window.screen.height / 2;
 	        		let elemoffset = entry.target.offsetTop;
 	        		let documentOffset = pageYOffset;
-	        		let coeficent = 0.1;
+	        		let coeficent = 0.2;
 	        		translate = (screenHeight + documentOffset - elemoffset) * coeficent;
 	        		console.log(translate);
 	        		heading.style.transform = `translateY(${translate}px)`;
