@@ -99,6 +99,7 @@ body.dark .main-screen{
 	width: 100%; height: 100%;
 	top: 0; left: -100%;
 	background-image: url("../img/main-screen_bg_light.jpg");
+	background-size: 100%;
 	color: #002413;
 	padding: 30px var(--padding-from-edges);
 	transition: var(--my-transition)
@@ -106,6 +107,7 @@ body.dark .main-screen{
 body.dark .main-screen__menu{
 	background: #007a4b;
 	background-image: url("../img/main-screen_bg_dark.jpg");
+	background-size: 100%;
 	color: #dbdede;
 }
 .main-screen__menu.active{
@@ -477,10 +479,12 @@ body.dark .main-screen__title>h1{
 	justify-content: center;
 	align-items: center;
 	background-image: url('../img/discover-bg_light.jpg');
+	background-size: 100%;
 	background-attachment: fixed;
 }
 body.dark .discover-screen{
 	background-image: url('../img/discover-bg_dark.jpg');
+	background-size: 100%;
 	background-attachment: fixed;
 }
 
@@ -661,10 +665,12 @@ body.dark .slider-list>.slide:hover>.slide-preview{
 	justify-content: center;
 	align-items: center;
 	background: url("../img/partners_bg_light.jpg");
+	background-size: 100%;
 	background-attachment: fixed;
 }
 body.dark .partners-screen{
 	background: url("../img/partners_bg_dark.jpg");
+	background-size: 100%;
 	background-attachment: fixed;
 }
 .partners{
@@ -706,10 +712,12 @@ body.dark .partners{
 	justify-content: center;
 	align-items: center;
 	background-image: url('../img/contact-bg_light.jpg');
+	background-size: 100%;
 	background-attachment: fixed;
 }
 body.dark .contact-screen{
 	background-image: url('../img/contact-bg_dark.jpg');
+	background-size: 100%;
 	background-attachment: fixed;
 
 }
@@ -940,7 +948,76 @@ body.dark .contact__form>form>.button:hover{
 .footer__copyright>span{
 	margin-right: 10px;
 }
-
+@media screen and (min-width: 1400px){
+	body{
+		font-size: 32px
+	}
+	.main-screen__title>.logo{
+		width: 70%;
+		height: 260px
+	}
+	.main-screen__title>h1{
+		font-size: 90px;
+		max-width: 100%;
+	}
+	h2{
+		font-size: 120px
+	}
+	h3{
+		font-size: 56px
+	}
+	.button{
+		font-size: 32px;
+		padding: 12px 32px
+	}
+	.next-competition{
+		font-size: 42px
+	}
+	.slider-list{
+		height: 800px
+	}
+	.slider-list>.slide{
+		height: 800px
+	}
+	.slider-list>.slide>.slide-img{
+		height: 500px
+	}
+	.partners__item{
+		height: 200px
+	}
+	.partners__item>img{
+		height: 100%
+	}
+	.contact__text{
+		width: 70%
+	}
+	.contact__form>form>.question>.label{
+		top: -10px;
+		font-size: 42px;
+	}
+	.contact__form>form textarea{
+		height: 400px
+	}
+	.contact__form>form input:focus~.label, .contact__form>form textarea:focus~.label{
+		top: -44px;
+		font-size: 32px;
+	}
+	.contact__form>form>.button{
+		max-height: 66px;
+		padding: 12px 40px
+	}
+	.subscribe__form>form{
+		display: flex;
+		align-items: center
+	}
+	.cocial__item>a>i{
+		width: 50px;height: 50px
+	}
+	.subscribe__form input{
+		padding: 12px 40px;
+		font-size: 32px
+	}
+}
 @media screen and (max-width: 992px){
 	h2{
 		font-size: 48px;
