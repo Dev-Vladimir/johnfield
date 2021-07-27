@@ -723,6 +723,7 @@ body.dark .contact-screen{
 }
 .contact{
 	background-image: url('../img/contact-bg_light.jpg');
+	background-size: 100%;
 	background-attachment: fixed;
 }
 body.dark .contact{
