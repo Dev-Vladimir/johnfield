@@ -479,12 +479,12 @@ body.dark .main-screen__title>h1{
 	justify-content: center;
 	align-items: center;
 	background-image: url('../img/discover-bg_light.jpg');
-	background-size: 100%;
+	background-size: cover;
 	background-attachment: fixed;
 }
 body.dark .discover-screen{
 	background-image: url('../img/discover-bg_dark.jpg');
-	background-size: 100%;
+	background-size: cover;
 	background-attachment: fixed;
 }
 
@@ -665,12 +665,12 @@ body.dark .slider-list>.slide:hover>.slide-preview{
 	justify-content: center;
 	align-items: center;
 	background: url("../img/partners_bg_light.jpg");
-	background-size: 100%;
+	background-size: cover;
 	background-attachment: fixed;
 }
 body.dark .partners-screen{
 	background: url("../img/partners_bg_dark.jpg");
-	background-size: 100%;
+	background-size: cover;
 	background-attachment: fixed;
 }
 .partners{
@@ -712,12 +712,12 @@ body.dark .partners{
 	justify-content: center;
 	align-items: center;
 	background-image: url('../img/contact-bg_light.jpg');
-	background-size: 100%;
+	background-size: cover;
 	background-attachment: fixed;
 }
 body.dark .contact-screen{
 	background-image: url('../img/contact-bg_dark.jpg');
-	background-size: 100%;
+	background-size: cover;
 	background-attachment: fixed;
 
 }
